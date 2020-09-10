@@ -19,8 +19,8 @@ receiver: report.receiver@example.com
 
 ## Run
 To run the script, make sure to pass in the `config.yaml` file as well as the `credentials.json` file. 
-```python
-python class_report.py credentials.json config.yaml
+```shell
+$ python class_report.py credentials.json config.yaml
 ```
 I am currently implementing this via a cronjob so that the email gets sent out every day at a given time. Enjoy!
 

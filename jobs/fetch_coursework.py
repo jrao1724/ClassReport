@@ -6,15 +6,18 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import json
 
+# remember to delete token.pickle if you change these
 SCOPES = ['https://www.googleapis.com/auth/classroom.courses.readonly', 
           'https://www.googleapis.com/auth/classroom.coursework.me']
 
 def main(credential_file):
-    """Shows basic usage of the Classroom API.
-    Prints the names of the first 10 courses the user has access to.
+    """
+    Fetches all active classes the user is currently a part of. From those courses,
+    all coursework is retrieved and is then placed into a coursework.json data structure.
     """
     creds = None
-
+    
+    # this will be created when initially run
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
             creds = pickle.load(token)

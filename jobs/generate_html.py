@@ -1,8 +1,13 @@
 import datetime
 import json
+import os
 from collections import OrderedDict
 
 def main(name):
+    """
+    Generates the HTML from the coursework data structure that gets created from
+    fetch_coursework.py. It's messy but it works. 
+    """
     today = datetime.datetime.today().strftime("%B %d, %Y")
     body_text = """
         <html>
@@ -43,8 +48,7 @@ def main(name):
         """
     body_text += f"""
         <body>
-            <h1>{name}'s Homework for {today}</h1>\n
-    """
+            <h1>{name}'s Homework for {today}</h1>"""
 
 
     coursework_dict = {}
@@ -88,14 +92,15 @@ def main(name):
                                             <tr>
                                                 <td><a href="{items['alternateLink']}">{items['title']}</a></td>
                                                 <td>N/A</td> 
-                                            </tr>
-                                        """
+                                            </tr>"""
             body_text += """</table>"""
             
     body_text += """</body></html>"""
     
     with open('email.html', 'w') as email_html:
         email_html.write(body_text)
+        
+    os.remove('coursework.json')
     
 if __name__ == '__main__':
     main()

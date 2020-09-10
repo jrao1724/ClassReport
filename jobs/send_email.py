@@ -4,6 +4,7 @@ import email
 import smtplib
 import ssl
 import yaml
+import os
 
 from email import encoders
 from email.mime.base import MIMEBase
@@ -36,6 +37,8 @@ def main(config_file, name):
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(sender, sender_password)
         server.sendmail(sender, receiver, message.as_string())
+        
+    os.remove('email.html')
         
 if __name__ == '__main__':
     main()

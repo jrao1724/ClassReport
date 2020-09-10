@@ -1,12 +1,10 @@
 import argparse
 
-import generate_html
-import fetch_coursework
-import send_email
+from jobs import fetch_coursework, generate_html, send_email
 
 def main():
     """
-    Must pass in config.yaml and credentials.json. 
+    Wrapper to run the jobs in succession. Requires credentials.json and config.yaml as arguments.
     """
     parser = argparse.ArgumentParser(description='pass in arguments for sending class reports.')
     parser.add_argument('credentials', help='credentials for accessing Classroom API')
